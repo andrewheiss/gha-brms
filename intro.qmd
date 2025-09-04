@@ -3,3 +3,43 @@
 This is a book created from markdown and executable code.
 
 See @knuth84 for additional discussion of literate programming.
+
+
+```{r}
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(brms)
+library(tidybayes)
+library(marginaleffects)
+```
+
+```{r}
+#| label: build-model
+#| warning: false
+#| message: false
+#| results: hide
+
+model <- brm(
+  bf(body_mass ~ species),
+  data = penguins,
+  family = gaussian(),
+  chains = 4, warmup = 1000, iter = 2000, seed = 1234,
+  backend = "cmdstanr", cores = 4, threads = threading(2)
+)
+```
+
+Here's @fig-bayes-results:
+
+```{r}
+#| label: fig-bayes-results
+model |> 
+  predictions(newdata = datagrid(species = unique)) |> 
+  get_draws() |> 
+  ggplot(aes(x = draw, y = fct_rev(species), fill = species)) + 
+  stat_halfeye() + 
+  guides(fill = "none") +
+  scale_fill_viridis_d(option = "turbo", begin = 0.1, end = 0.9) +
+  theme_minimal()
+```
