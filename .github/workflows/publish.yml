@@ -57,9 +57,15 @@ jobs:
         with:
           cache-version: 1
 
+      - name: Set {cmdstan} environment variables
+        run: |
+          echo "CMDSTAN_PATH=${HOME}/.cmdstan" >> $GITHUB_ENV
+        shell: bash
+
       - name: Build {cmdstan}
         run: |
-          cmdstanr::install_cmdstan(cores = parallel::detectCores(), cpp_options = list("CXX" = "clang++"))
+          cmdstanr::check_cmdstan_toolchain(fix = TRUE)
+          cmdstanr::install_cmdstan(cores = 2)
         shell: Rscript {0}
 
     #   - name: Render and publish
