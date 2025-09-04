@@ -19,22 +19,22 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt-get update -y
-          sudo apt-get install -y
-            libicu-dev 
-            make 
-            libx11-dev 
-            libcurl4-openssl-dev 
-            libssl-dev 
-            zlib1g-dev 
-            pandoc 
-            libfontconfig1-dev 
-            libfreetype6-dev 
-            libfribidi-dev 
-            libharfbuzz-dev 
-            libjpeg-dev 
-            libpng-dev 
-            libtiff-dev 
-            libwebp-dev 
+          sudo apt-get install -y \
+            libicu-dev \
+            make \
+            libx11-dev \
+            libcurl4-openssl-dev \
+            libssl-dev \
+            zlib1g-dev \
+            pandoc \
+            libfontconfig1-dev \
+            libfreetype6-dev \
+            libfribidi-dev \
+            libharfbuzz-dev \
+            libjpeg-dev \
+            libpng-dev \
+            libtiff-dev \
+            libwebp-dev \
             libxml2-dev
 
       - name: Set up Quarto
