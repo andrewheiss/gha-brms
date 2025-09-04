@@ -73,7 +73,7 @@ jobs:
           if (!dir.exists(cmdstan_path) || length(list.files(cmdstan_path)) == 0) {
             message("Installing cmdstan...")
             cmdstanr::check_cmdstan_toolchain(fix = TRUE)
-            cmdstanr::install_cmdstan(cores = 2)
+            cmdstanr::install_cmdstan(dir = cmdstan_path, cores = 2)
           } else {
             message("Using cached cmdstan installation")
             cmdstanr::set_cmdstan_path(cmdstan_path)
