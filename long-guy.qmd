@@ -1,0 +1,14 @@
+# Long thing
+
+This is just to check that freezing is working on GHA
+
+```{r}
+#| label: long-thing
+
+add_one_slowly <- \(x) {
+  Sys.sleep(15)
+  x + 1
+}
+
+sapply(1:4, add_one_slowly)
+```

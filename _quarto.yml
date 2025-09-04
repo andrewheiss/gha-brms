@@ -15,6 +15,7 @@ book:
     - index.qmd
     - intro.qmd
     - summary.qmd
+    - long-guy.qmd
     - references.qmd
 
 bibliography: references.bib

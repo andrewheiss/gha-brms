@@ -1,0 +1,21 @@
+{
+  "hash": "7fb1df85b0bc76e937655feab02d4f12",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Introduction\n\nThis is a book created from markdown and executable code.\n\nSee @knuth84 for additional discussion of literate programming.\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\nlibrary(brms)\nlibrary(tidybayes)\nlibrary(marginaleffects)\n```\n:::\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nmodel <- brm(\n  bf(body_mass ~ species),\n  data = penguins,\n  family = gaussian(),\n  chains = 4, warmup = 1000, iter = 2000, seed = 1234,\n  backend = \"cmdstanr\", cores = 4, threads = threading(2)\n)\n```\n:::\n\n\nHere's @fig-bayes-results:\n\n\n::: {.cell}\n\n```{.r .cell-code}\nmodel |> \n  predictions(newdata = datagrid(species = unique)) |> \n  get_draws() |> \n  ggplot(aes(x = draw, y = fct_rev(species), fill = species)) + \n  stat_halfeye() + \n  guides(fill = \"none\") +\n  scale_fill_viridis_d(option = \"turbo\", begin = 0.1, end = 0.9) +\n  theme_minimal()\n```\n\n::: {.cell-output-display}\n![](intro_files/figure-pdf/fig-bayes-results-1.pdf){#fig-bayes-results fig-pos='H'}\n:::\n:::\n\n",
+    "supporting": [
+      "intro_files/figure-pdf"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {
+      "knitr": [
+        "{\"type\":\"list\",\"attributes\":{},\"value\":[]}"
+      ]
+    },
+    "preserve": null,
+    "postProcess": false
+  }
+}

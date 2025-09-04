@@ -1,0 +1,21 @@
+{
+  "hash": "c0997eb569d0d876c9ed78be59fa1b86",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Long thing\n\nThis is just to check that freezing is working on GHA\n\n\n::: {.cell}\n\n```{.r .cell-code}\nadd_one_slowly <- \\(x) {\n  Sys.sleep(15)\n  x + 1\n}\n\nsapply(1:4, add_one_slowly)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 2 3 4 5\n```\n\n\n:::\n:::\n\n",
+    "supporting": [
+      "long-guy_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {
+      "knitr": [
+        "{\"type\":\"list\",\"attributes\":{},\"value\":[]}"
+      ]
+    },
+    "preserve": null,
+    "postProcess": false
+  }
+}
