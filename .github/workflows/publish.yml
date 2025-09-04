@@ -68,9 +68,9 @@ jobs:
           cmdstanr::install_cmdstan(cores = 2)
         shell: Rscript {0}
 
-    #   - name: Render and publish
-    #     uses: quarto-dev/quarto-actions/publish@v2
-    #     with:
-    #       target: gh-pages
-    #     env:
-    #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Render and publish
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
