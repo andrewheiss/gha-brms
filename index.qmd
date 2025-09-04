@@ -3,3 +3,16 @@
 This is a Quarto book.
 
 To learn more about Quarto books visit <https://quarto.org/docs/books>.
+
+
+```{r}
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+ggplot(penguins, aes(x = body_mass, fill = species)) +
+  geom_density(alpha = 0.8) +
+  scale_fill_viridis_d(option = "turbo", begin = 0.1, end = 0.9) +
+  theme_minimal()
+```
