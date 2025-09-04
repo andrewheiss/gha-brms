@@ -30,6 +30,16 @@
     ]
   },
   {
+    "objectID": "long-guy.html",
+    "href": "long-guy.html",
+    "title": "3  Long thing",
+    "section": "",
+    "text": "This is just to check that freezing is working on GHA\n\nadd_one_slowly &lt;- \\(x) {\n  Sys.sleep(15)\n  x + 1\n}\n\nsapply(1:4, add_one_slowly)\n\n[1] 2 3 4 5",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Long thing</span>"
+    ]
+  },
+  {
     "objectID": "references.html",
     "href": "references.html",
     "title": "References",
