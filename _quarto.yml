@@ -5,6 +5,12 @@ book:
   title: "Test book with {brms}"
   author: "Norah Jones"
   date: "9/4/2025"
+
+  site-url: "https://andrewheiss.github.io/gha-brms/"
+
+  repo-url: "https://github.com/andrewheiss/gha-brms"
+  repo-actions: [source, issue]
+
   chapters:
     - index.qmd
     - intro.qmd
