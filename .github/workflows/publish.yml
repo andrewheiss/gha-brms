@@ -49,14 +49,14 @@ jobs:
           r-version: ${{ env.R_VERSION }}
           # use-public-rspm: true
 
-      - name: Install R Dependencies
+      - name: Install R dependencies
         uses: r-lib/actions/setup-renv@v2
         with:
           cache-version: 1
 
-      - name: Render and Publish
-        uses: quarto-dev/quarto-actions/publish@v2
-        with:
-          target: gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Render and publish
+      #   uses: quarto-dev/quarto-actions/publish@v2
+      #   with:
+      #     target: gh-pages
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
