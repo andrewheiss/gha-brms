@@ -14,7 +14,7 @@
     "href": "intro.html",
     "title": "1  Introduction",
     "section": "",
-    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\nlibrary(tidyverse)\nlibrary(brms)\nlibrary(tidybayes)\nlibrary(marginaleffects)\n\n\nmodel &lt;- brm(\n  bf(body_mass ~ species),\n  data = penguins,\n  family = gaussian(),\n  chains = 4, warmup = 1000, iter = 2000, seed = 1234,\n  backend = \"cmdstanr\", cores = 4, threads = threading(2)\n)\n\nHere’s Figure 1.1:\n\nmodel |&gt; \n  predictions(newdata = datagrid(species = unique)) |&gt; \n  get_draws() |&gt; \n  ggplot(aes(x = draw, y = fct_rev(species), fill = species)) + \n  stat_halfeye() + \n  guides(fill = \"none\") +\n  scale_fill_viridis_d(option = \"turbo\", begin = 0.1, end = 0.9) +\n  theme_minimal()\n\n\n\n\n\n\n\nFigure 1.1\n\n\n\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
