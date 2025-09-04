@@ -57,9 +57,14 @@ jobs:
         with:
           cache-version: 1
 
-      - name: Render and publish
-        uses: quarto-dev/quarto-actions/publish@v2
-        with:
-          target: gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #   - name: Build Cmdstan
+    #     run: |
+    #       cmdstanr::install_cmdstan(cores = parallel::detectCores(), cpp_options = list("CXX" = "clang++"))
+    #     shell: Rscript {0}
+
+    #   - name: Render and publish
+    #     uses: quarto-dev/quarto-actions/publish@v2
+    #     with:
+    #       target: gh-pages
+    #     env:
+    #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
