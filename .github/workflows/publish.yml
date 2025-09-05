@@ -14,8 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       R_VERSION: '4.5.0'
-      CMDSTAN_PATH: $HOME/.cmdstan
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4 
@@ -59,25 +57,15 @@ jobs:
         with:
           cache-version: 1
 
-      - name: Cache {cmdstan} installation
-        uses: actions/cache@v4
-        with:
-          path: ~/.cmdstan
-          key: ${{ runner.os }}-cmdstan-${{ hashFiles('renv.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-cmdstan-
+      - name: Set {cmdstan} environment variables
+        run: |
+          echo "CMDSTAN_PATH=${HOME}/.cmdstan" >> $GITHUB_ENV
+        shell: bash
 
       - name: Build {cmdstan}
         run: |
-          cmdstan_path <- "~/.cmdstan"
-          if (!dir.exists(cmdstan_path) || length(list.files(cmdstan_path)) == 0) {
-            message("Installing cmdstan...")
-            cmdstanr::check_cmdstan_toolchain(fix = TRUE)
-            cmdstanr::install_cmdstan(dir = cmdstan_path, cores = 2)
-          } else {
-            message("Using cached cmdstan installation")
-            cmdstanr::set_cmdstan_path(cmdstan_path)
-          }
+          cmdstanr::check_cmdstan_toolchain(fix = TRUE)
+          cmdstanr::install_cmdstan(cores = 2)
         shell: Rscript {0}
 
       - name: Render and publish
