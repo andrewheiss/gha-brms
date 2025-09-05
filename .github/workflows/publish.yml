@@ -57,12 +57,20 @@ jobs:
         with:
           cache-version: 1
 
-      - name: Set {cmdstan} environment variables
+      - name: Set CmdStan environment variables
         run: |
           echo "CMDSTAN_PATH=${HOME}/.cmdstan" >> $GITHUB_ENV
         shell: bash
 
-      - name: Build {cmdstan}
+      - name: Cache CmdStan build
+        uses: actions/cache@v4
+        with:
+          path: ~/.cmdstan
+          key: cmdstan-${{ runner.os }}-${{ hashFiles('renv.lock') }}
+          restore-keys: |
+            cmdstan-${{ runner.os }}-
+
+      - name: Build CmdStan
         run: |
           cmdstanr::check_cmdstan_toolchain(fix = TRUE)
           cmdstanr::install_cmdstan(cores = 2)
